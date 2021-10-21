@@ -17,7 +17,6 @@ public interface Communication<M> {
 
     Flux<M> getMany(Query query);
 
-
     @Getter
     class Query{
         final String accountNumber;
@@ -26,15 +25,18 @@ public interface Communication<M> {
         final Map<String, Object> params;
 
         final Class<?> expect;
-
+        final boolean single;
 
         @Builder
-        public Query(String accountNumber, LocalDate toExclusive, LocalDate fromInclusive, Map<String, Object> params, Class<?> expect) {
+        public Query(String accountNumber, LocalDate toExclusive,
+                     LocalDate fromInclusive, Map<String, Object> params, Class<?> expect,
+                     boolean single) {
             this.accountNumber = accountNumber;
             this.toExclusive = toExclusive;
             this.fromInclusive = fromInclusive;
             this.params = params;
             this.expect = expect;
+            this.single = single;
         }
     }
 }
